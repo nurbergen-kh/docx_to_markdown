@@ -1,37 +1,79 @@
-# Docs to Markdown
+# DOCX to Markdown Converter
 
-A Python tool to convert DOCX documents to Markdown format.
+Набор скриптов для конвертации документов DOCX в формат Markdown.
 
-## Installation
+## Описание
 
-1. Make sure you have Poetry installed:
-```bash
-curl -sSL https://install.python-poetry.org | python3 -
-```
+Этот проект содержит несколько скриптов для извлечения текста из DOCX файлов и преобразования его в формат Markdown. Каждый скрипт использует разные библиотеки и подходы для обработки документов.
 
-2. Clone the repository and install dependencies:
-```bash
-git clone <repository-url>
-cd docs-to-markdown
-poetry install
-```
+## Скрипты
 
-## Usage
+### 1. docs_to_markdown.py
 
-To convert a DOCX file to Markdown:
+Основной скрипт для конвертации DOCX в Markdown с использованием библиотеки `python-docx`. Этот скрипт обрабатывает текст, таблицы и форматирование.
 
 ```bash
 poetry run python docs_to_markdown.py input.docx output.md
 ```
 
-## Features
+### 2. docx_to_html_markdown.py
 
-- Converts DOCX documents to clean Markdown format
-- Preserves document structure (headings, tables, lists)
-- Handles various table formats
-- Flexible title detection
-- Clean text formatting
+Скрипт, который сначала конвертирует DOCX в HTML с помощью библиотеки `mammoth`, а затем преобразует HTML в Markdown с помощью `html2text`. Этот подход лучше сохраняет форматирование.
 
-## License
+```bash
+poetry run python docx_to_html_markdown.py input.docx output_html_md.md
+```
+
+### 3. extract_text_docx2python.py
+
+Скрипт для извлечения текста из DOCX файлов с использованием библиотеки `docx2python`. Этот скрипт фокусируется на извлечении чистого текста.
+
+```bash
+poetry run python extract_text_docx2python.py input.docx
+```
+
+### 4. extract_text_mammoth.py
+
+Скрипт для извлечения текста из DOCX файлов с использованием библиотеки `mammoth`. Этот скрипт также фокусируется на извлечении чистого текста.
+
+```bash
+poetry run python extract_text_mammoth.py input.docx
+```
+
+## Установка
+
+Проект использует Poetry для управления зависимостями. Для установки выполните:
+
+```bash
+# Установка Poetry (если еще не установлен)
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Установка зависимостей
+poetry install
+```
+
+## Зависимости
+
+- python-docx
+- docx2python
+- mammoth
+- html2text
+- beautifulsoup4
+- tabulate
+
+## Особенности
+
+- Обработка таблиц с сохранением структуры
+- Форматирование заголовков
+- Обработка ссылок
+- Сохранение форматирования текста
+
+## Ограничения
+
+- Сложное форматирование может быть потеряно при конвертации
+- Некоторые специальные элементы документа могут не обрабатываться корректно
+- Изображения извлекаются как альтернативный текст
+
+## Лицензия
 
 MIT 
